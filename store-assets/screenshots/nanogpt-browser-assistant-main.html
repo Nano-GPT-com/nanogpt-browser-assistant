@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NanoGPT Browser Assistant listing screenshot</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 1280px;
+        height: 800px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 18% 14%, rgba(82, 171, 255, 0.20), transparent 34%),
+          radial-gradient(circle at 88% 18%, rgba(70, 208, 214, 0.18), transparent 32%),
+          linear-gradient(135deg, #08111f 0%, #0b1420 45%, #0d1117 100%);
+        color: #eef5ff;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .frame {
+        position: relative;
+        width: 1280px;
+        height: 800px;
+        padding: 42px;
+      }
+
+      .browser {
+        position: absolute;
+        inset: 42px;
+        border: 1px solid rgba(105, 175, 245, 0.26);
+        border-radius: 22px;
+        overflow: hidden;
+        background: #0d1117;
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 48px;
+        padding: 0 18px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.20);
+        background: #171b23;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+      }
+
+      .dot.red { background: #ff5f57; }
+      .dot.yellow { background: #ffbd2e; }
+      .dot.green { background: #28c840; }
+
+      .address {
+        display: flex;
+        align-items: center;
+        height: 28px;
+        min-width: 0;
+        margin-left: 12px;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: #232a35;
+        color: #9ca8b7;
+        font-size: 13px;
+        flex: 1;
+      }
+
+      .page {
+        position: absolute;
+        left: 0;
+        top: 48px;
+        bottom: 0;
+        width: 780px;
+        padding: 46px 52px;
+        background:
+          linear-gradient(rgba(11, 20, 32, 0.78), rgba(11, 20, 32, 0.78)),
+          linear-gradient(90deg, rgba(74, 168, 255, 0.10) 1px, transparent 1px),
+          linear-gradient(rgba(74, 168, 255, 0.08) 1px, transparent 1px);
+        background-size: auto, 48px 48px, 48px 48px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 13px;
+        border: 1px solid rgba(83, 176, 255, 0.38);
+        border-radius: 999px;
+        color: #cfe9ff;
+        background: rgba(22, 83, 136, 0.30);
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .hero {
+        margin-top: 34px;
+        max-width: 640px;
+      }
+
+      h1 {
+        margin: 0;
+        color: #f7fbff;
+        font-size: 54px;
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        margin: 22px 0 0;
+        max-width: 565px;
+        color: #b8c4d4;
+        font-size: 23px;
+        line-height: 1.42;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        width: 600px;
+        margin-top: 38px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        min-height: 72px;
+        gap: 14px;
+        padding: 14px 16px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 14px;
+        background: rgba(15, 23, 42, 0.66);
+        color: #dbe8f7;
+        font-size: 17px;
+        font-weight: 650;
+      }
+
+      .icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 12px;
+        background: rgba(74, 168, 255, 0.18);
+        color: #69c4ff;
+        font-size: 21px;
+        flex: 0 0 auto;
+      }
+
+      .assistant {
+        position: absolute;
+        top: 48px;
+        right: 0;
+        bottom: 0;
+        width: 458px;
+        border-left: 1px solid rgba(148, 163, 184, 0.22);
+        background: #11151b;
+      }
+
+      .assistant-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 72px;
+        padding: 0 20px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.20);
+      }
+
+      .logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-title {
+        color: #f5f7fb;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .brand-subtitle {
+        margin-top: 2px;
+        color: #9aa5b4;
+        font-size: 13px;
+      }
+
+      .tools {
+        padding: 16px 18px 14px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+      }
+
+      .tools-title {
+        margin-bottom: 10px;
+        color: #bbc7d6;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      .tool {
+        display: grid;
+        height: 48px;
+        place-items: center;
+        border: 1px solid #303844;
+        border-radius: 8px;
+        background: #1a1e26;
+        color: #eef5ff;
+        font-size: 22px;
+      }
+
+      .chat {
+        position: absolute;
+        inset: 159px 0 150px;
+        padding: 28px 20px;
+      }
+
+      .bubble {
+        max-width: 330px;
+        padding: 16px 18px;
+        border-radius: 12px;
+        font-size: 16px;
+        line-height: 1.42;
+      }
+
+      .bubble.user {
+        margin-left: auto;
+        background: #113e5a;
+        border: 1px solid #235f86;
+        color: #f5fbff;
+      }
+
+      .bubble.assistant-bubble {
+        margin-top: 28px;
+        background: #1b2029;
+        border: 1px solid #343d4a;
+        color: #d8e4f2;
+      }
+
+      .notice {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        padding: 8px 10px;
+        border: 1px solid rgba(74, 168, 255, 0.34);
+        border-radius: 999px;
+        background: rgba(74, 168, 255, 0.10);
+        color: #aedaff;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .composer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 14px 18px 18px;
+        border-top: 1px solid rgba(148, 163, 184, 0.18);
+        background: #1a1d23;
+      }
+
+      .mode-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .mode,
+      .search {
+        height: 32px;
+        padding: 0 13px;
+        border: 1px solid #343b46;
+        border-radius: 999px;
+        background: #1b1f27;
+        color: #bcc7d6;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .mode.active,
+      .search {
+        border-color: #49a8ff;
+        color: #5bb9ff;
+        background: rgba(74, 168, 255, 0.13);
+      }
+
+      .search {
+        margin-left: auto;
+      }
+
+      .input {
+        border: 2px solid #36a3ff;
+        border-radius: 10px;
+        box-shadow: 0 0 0 3px rgba(54, 163, 255, 0.14);
+        background: #181b22;
+        overflow: hidden;
+      }
+
+      .model {
+        height: 38px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 12px;
+        border-bottom: 1px solid #2d3540;
+        color: #f4f7fb;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .prompt {
+        height: 64px;
+        padding: 14px 12px;
+        color: #8994a3;
+        font-size: 16px;
+      }
+
+      .send {
+        position: absolute;
+        right: 16px;
+        bottom: 24px;
+        display: grid;
+        width: 52px;
+        height: 52px;
+        place-items: center;
+        border-radius: 12px;
+        background: #4aa8ff;
+        color: white;
+        font-size: 26px;
+        font-weight: 900;
+      }
+
+      .privacy {
+        position: absolute;
+        left: 52px;
+        bottom: 54px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #b8c4d4;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="frame">
+      <section class="browser">
+        <div class="topbar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <div class="address">https://example.com/research/article</div>
+        </div>
+
+        <section class="page">
+          <div class="badge">
+            <img class="logo" src="../../Chrome%20extension/logo.png" alt="">
+            NanoGPT Browser Assistant
+          </div>
+          <div class="hero">
+            <h1>Use NanoGPT on any webpage</h1>
+            <p class="lead">Summarize, explain, translate, and ask questions with page context from your browser sidebar.</p>
+          </div>
+          <div class="feature-grid">
+            <div class="feature"><span class="icon">▣</span>Attach the entire page</div>
+            <div class="feature"><span class="icon">⌖</span>Select an element or area</div>
+            <div class="feature"><span class="icon">◇</span>Choose any NanoGPT model</div>
+            <div class="feature"><span class="icon">⌕</span>Optional web search</div>
+          </div>
+          <div class="privacy"><span class="icon">✓</span>NanoGPT does not store your conversations</div>
+        </section>
+
+        <aside class="assistant">
+          <header class="assistant-header">
+            <img class="logo" src="../../Chrome%20extension/logo.png" alt="">
+            <div class="brand">
+              <div class="brand-title">NanoGPT</div>
+              <div class="brand-subtitle">Browser Assistant</div>
+            </div>
+          </header>
+
+          <section class="tools">
+            <div class="tools-title">Selection</div>
+            <div class="tool-grid">
+              <div class="tool">▤</div>
+              <div class="tool">▧</div>
+              <div class="tool">▨</div>
+              <div class="tool">⌁</div>
+            </div>
+          </section>
+
+          <section class="chat">
+            <div class="bubble user">
+              Summarise this page and include the main tradeoffs.
+              <div class="notice">Entire page attached</div>
+            </div>
+            <div class="bubble assistant-bubble">
+              Here are the key points, with the context from the current page kept separate from your prompt.
+            </div>
+          </section>
+
+          <section class="composer">
+            <div class="mode-row">
+              <button class="mode active">Summarise</button>
+              <button class="mode">Explain</button>
+              <button class="mode">Translate</button>
+              <button class="search">Web search</button>
+            </div>
+            <div class="input">
+              <div class="model">
+                <img class="logo" src="../../Chrome%20extension/icons/32.png" alt="">
+                GPT Chat Latest
+              </div>
+              <div class="prompt">Ask GPT Chat Latest</div>
+            </div>
+            <div class="send">›</div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

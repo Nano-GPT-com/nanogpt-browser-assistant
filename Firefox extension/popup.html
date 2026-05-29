@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      width: 240px;
+      padding: 16px;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    .header img {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1b1e;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #228be6;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1a1b1e;
+        color: #fff;
+      }
+      .header {
+        border-bottom-color: #2c2e33;
+      }
+      .header h1 {
+        color: #fff;
+      }
+    }
+
+    /* Add these new styles */
+    .settings-container {
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    .shortcut-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eaeaea;
+    }
+
+    .shortcut-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .shortcut-display {
+      background: #f1f3f5;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .shortcut-instructions {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      .shortcut-row {
+        border-top-color: #2c2e33;
+      }
+      .shortcut-display {
+        background: #2c2e33;
+      }
+      .shortcut-instructions {
+        color: #999;
+      }
+    }
+
+    /* Add these new styles */
+    .shortcut-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .edit-shortcut {
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .edit-shortcut:hover {
+      opacity: 1;
+    }
+
+    .edit-shortcut svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .blacklist-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eaeaea;
+    }
+
+    .blacklist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .blacklist-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .blacklist-add {
+      background: none;
+      border: none;
+      color: #228be6;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .blacklist-add:hover {
+      background: rgba(34, 139, 230, 0.1);
+    }
+
+    .blacklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .blacklist-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 8px;
+      background: #f1f3f5;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .blacklist-remove {
+      background: none;
+      border: none;
+      color: #e03131;
+      cursor: pointer;
+      padding: 2px;
+      opacity: 0.6;
+    }
+
+    .blacklist-remove:hover {
+      opacity: 1;
+    }
+
+    .blacklist-empty {
+      font-size: 13px;
+      color: #868e96;
+      font-style: italic;
+      padding: 4px 8px;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      .blacklist-row {
+        border-top-color: #2c2e33;
+      }
+      .blacklist-item {
+        background: #2c2e33;
+      }
+      .blacklist-add {
+        color: #74c0fc;
+      }
+      .blacklist-add:hover {
+        background: rgba(116, 192, 252, 0.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="logo.png" alt="NanoGPT Logo">
+    <h1>Browser Assistant</h1>
+  </div>
+  <div class="settings-container">
+    <div class="toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="floating-icon-toggle">
+        <span class="slider"></span>
+      </label>
+      <span>Show Floating Icon</span>
+    </div>
+    <div class="shortcut-row">
+      <div class="shortcut-section">
+        <div>
+          <span>Toggle assistant shortcut: </span>
+          <span class="shortcut-display" id="current-shortcut">Loading...</span>
+        </div>
+        <div class="shortcut-instructions">
+          To change shortcut:<br>
+          1. Go to extension settings<br>
+          2. Click the gear icon<br>
+          3. Select 'Manage Extension Shortcuts'
+        </div>
+      </div>
+    </div>
+    <div class="blacklist-row">
+      <div class="blacklist-header">
+        <span class="blacklist-title">Disabled Sites</span>
+        <button class="blacklist-add" id="add-site">Add Site</button>
+      </div>
+      <div class="blacklist-items" id="blacklist-items">
+        <!-- Items will be added here dynamically -->
+        <div class="blacklist-empty">No sites added</div>
+      </div>
+    </div>
+  </div>
+  <script src="browser-polyfill.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

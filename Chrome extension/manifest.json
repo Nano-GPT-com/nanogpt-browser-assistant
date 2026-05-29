@@ -1,0 +1,50 @@
+{
+  "name": "NanoGPT Browser Assistant",
+  "version": "1.0.15",
+  "description": "Use NanoGPT on webpages to summarize, explain, translate, and chat with page context.",
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "manifest_version": 3,
+  "permissions": ["activeTab", "storage", "sidePanel", "contextMenus", "scripting"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://nano-gpt.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["overlay.css"],
+      "js": ["shared/content-utils.js", "content.js"]
+    }
+  ],
+  "commands": {
+    "toggle-search-bar": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "Toggle NanoGPT Browser Assistant"
+    }
+  },
+  "web_accessible_resources": [{
+    "resources": ["logo.png"],
+    "matches": ["<all_urls>"]
+  }],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  }
+}

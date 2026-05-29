@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NanoGPT Browser Assistant marquee promo tile</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        width: 1400px;
+        height: 560px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 83% 18%, rgba(45, 212, 191, 0.26), transparent 28%),
+          radial-gradient(circle at 19% 13%, rgba(74, 168, 255, 0.28), transparent 32%),
+          linear-gradient(135deg, #07111f 0%, #0a1422 55%, #111827 100%);
+        color: #f4f8ff;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .tile {
+        position: relative;
+        width: 1400px;
+        height: 560px;
+        padding: 58px 72px;
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(115, 190, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(rgba(115, 190, 255, 0.07) 1px, transparent 1px);
+        background-size: 44px 44px;
+      }
+
+      .copy {
+        position: relative;
+        width: 610px;
+        z-index: 2;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+        box-shadow: 0 14px 35px rgba(37, 177, 255, 0.32);
+      }
+
+      .name {
+        font-size: 29px;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        margin: 52px 0 0;
+        max-width: 620px;
+        font-size: 68px;
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 24px 0 0;
+        max-width: 560px;
+        color: #bdc9d8;
+        font-size: 25px;
+        line-height: 1.38;
+      }
+
+      .features {
+        display: flex;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        height: 40px;
+        padding: 0 15px;
+        border: 1px solid rgba(81, 178, 255, 0.45);
+        border-radius: 999px;
+        background: rgba(74, 168, 255, 0.14);
+        color: #b9e4ff;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .mock {
+        position: absolute;
+        right: 72px;
+        top: 58px;
+        width: 588px;
+        height: 444px;
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        border-radius: 24px;
+        overflow: hidden;
+        background: #11151b;
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.42);
+      }
+
+      .bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        height: 40px;
+        padding: 0 15px;
+        background: #1a1f29;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+      }
+
+      .red { background: #ff5f57; }
+      .yellow { background: #ffbd2e; }
+      .green { background: #28c840; }
+
+      .mock-body {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        height: 404px;
+      }
+
+      .page {
+        padding: 42px 34px;
+        border-right: 1px solid rgba(148, 163, 184, 0.18);
+        background: #0d1520;
+      }
+
+      .line {
+        height: 16px;
+        margin-bottom: 16px;
+        border-radius: 999px;
+        background: #243447;
+      }
+
+      .line.short { width: 54%; }
+      .line.mid { width: 74%; }
+      .line.long { width: 92%; }
+
+      .assistant {
+        position: relative;
+        padding: 20px 16px;
+        background: #11151b;
+      }
+
+      .assistant-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #f7fbff;
+        font-size: 16px;
+        font-weight: 850;
+      }
+
+      .assistant-brand .logo {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+      }
+
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 7px;
+        margin-top: 24px;
+      }
+
+      .tool {
+        height: 34px;
+        border: 1px solid #303844;
+        border-radius: 8px;
+        background: #1a1e26;
+      }
+
+      .bubble {
+        margin-top: 24px;
+        padding: 14px;
+        border: 1px solid #235f86;
+        border-radius: 12px;
+        background: #113e5a;
+        color: #eef8ff;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .input {
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        height: 72px;
+        border: 2px solid #36a3ff;
+        border-radius: 12px;
+        background: #181b22;
+        box-shadow: 0 0 0 3px rgba(54, 163, 255, 0.14);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="tile">
+      <div class="grid"></div>
+      <section class="copy">
+        <div class="brand">
+          <img class="logo" src="../../Chrome%20extension/logo.png" alt="">
+          <div class="name">NanoGPT Browser Assistant</div>
+        </div>
+        <h1>Use NanoGPT on any webpage</h1>
+        <p>Summarize, explain, translate, and ask questions with page context from your browser sidebar.</p>
+        <div class="features">
+          <div class="chip">Page context</div>
+          <div class="chip">Model picker</div>
+          <div class="chip">Web search</div>
+        </div>
+      </section>
+
+      <section class="mock">
+        <div class="bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="mock-body">
+          <div class="page">
+            <div class="line long"></div>
+            <div class="line mid"></div>
+            <div class="line short"></div>
+            <div class="line long" style="margin-top: 42px;"></div>
+            <div class="line mid"></div>
+            <div class="line long"></div>
+          </div>
+          <div class="assistant">
+            <div class="assistant-brand">
+              <img class="logo" src="../../Chrome%20extension/logo.png" alt="">
+              NanoGPT
+            </div>
+            <div class="tools">
+              <div class="tool"></div>
+              <div class="tool"></div>
+              <div class="tool"></div>
+              <div class="tool"></div>
+            </div>
+            <div class="bubble">Summarise this page with the attached context.</div>
+            <div class="input"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

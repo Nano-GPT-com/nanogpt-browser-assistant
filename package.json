@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build:chrome": "cd \"Chrome extension\" && ./build.sh",
+    "build:firefox": "cd \"Firefox extension\" && ./build.sh",
+    "build:all": "npm run sync:shared && npm run build:chrome && npm run build:firefox",
+    "release:chrome": "node scripts/release-chrome.js",
+    "release:firefox": "node scripts/release-firefox.js",
+    "sync:shared": "node scripts/sync-shared.js",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "web-ext": "^10.3.0"
+  }
+}

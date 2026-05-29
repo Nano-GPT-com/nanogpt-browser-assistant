@@ -1,0 +1,78 @@
+name: Release browser extensions
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Browser package to release
+        type: choice
+        required: true
+        default: both
+        options:
+          - both
+          - chrome
+          - firefox
+      chrome_action:
+        description: Chrome Web Store action
+        type: choice
+        required: true
+        default: upload
+        options:
+          - upload
+          - publish
+      firefox_channel:
+        description: Mozilla Add-ons channel
+        type: choice
+        required: true
+        default: listed
+        options:
+          - listed
+          - unlisted
+      dry_run:
+        description: Build and verify without submitting to stores
+        type: boolean
+        required: true
+        default: true
+
+jobs:
+  release:
+    name: Build and submit extension packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      DRY_RUN: ${{ inputs.dry_run }}
+      CHROME_RELEASE_ACTION: ${{ inputs.chrome_action }}
+      FIREFOX_RELEASE_CHANNEL: ${{ inputs.firefox_channel }}
+      CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+      CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
+      CHROME_SERVICE_ACCOUNT_JSON: ${{ secrets.CHROME_SERVICE_ACCOUNT_JSON }}
+      AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+      AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build release archives
+        run: npm run build:all
+
+      - name: Verify release archives
+        run: npm test
+
+      - name: Submit Chrome package
+        if: ${{ inputs.target == 'both' || inputs.target == 'chrome' }}
+        run: npm run release:chrome -- --action=${{ inputs.chrome_action }}
+
+      - name: Submit Firefox package
+        if: ${{ inputs.target == 'both' || inputs.target == 'firefox' }}
+        run: npm run release:firefox -- --channel=${{ inputs.firefox_channel }}

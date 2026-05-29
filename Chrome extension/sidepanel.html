@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NanoGPT</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="logo.png" alt="">
+        <div>
+          <h1>NanoGPT</h1>
+          <p id="conversation-status">Local chat</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="open-settings" class="icon-button" title="Settings" aria-label="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.43 12.98c.04-.32.07-.65.07-.98s-.02-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46a.5.5 0 0 0-.61-.22l-2.49 1a7.28 7.28 0 0 0-1.69-.98L14.5 2.42A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.5.42L9.12 5.07c-.6.23-1.16.56-1.69.98l-2.49-1a.5.5 0 0 0-.61.22l-2 3.46a.5.5 0 0 0 .12.64l2.11 1.65c-.04.32-.06.65-.06.98s.02.66.07.98l-2.11 1.65a.5.5 0 0 0-.12.64l2 3.46c.13.22.39.31.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.38-2.65c.6-.25 1.16-.58 1.69-.98l2.49 1c.23.08.48 0 .61-.22l2-3.46a.5.5 0 0 0-.12-.64l-2.11-1.65ZM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5Z"/></svg>
+        </button>
+        <button id="new-chat" class="icon-button" title="New chat" aria-label="New chat">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H6a1 1 0 1 1 0-2h5V6a1 1 0 0 1 1-1Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="quick-actions" aria-label="Selection">
+      <div class="quick-actions-title">Selection</div>
+      <button id="ask-page" class="quick-action-button" type="button" title="Use the entire page" aria-label="Use the entire page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 2H6v16h12V8h-4V4ZM8 11h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h4v2H8V7Z"/></svg>
+        <span>Entire page</span>
+      </button>
+      <button id="ask-selection" class="quick-action-button" type="button" title="Ask about an element" aria-label="Ask about an element">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2h-2V5H6v14h12v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Zm4 4h8v2H8V9Zm0 4h6v2H8v-2Zm10.6-1.8 1.4 1.4-4.9 4.9H13v-2.1l5.6-4.2Z"/></svg>
+        <span>Element</span>
+      </button>
+      <button id="ask-image" class="quick-action-button" type="button" title="Click an image on the page" aria-label="Click an image on the page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm0 2v10.6l3.3-3.3a1 1 0 0 1 1.4 0l2.3 2.3 4.3-4.3a1 1 0 0 1 1.4 0L19 11.6V5H5Zm0 14h14v-4.6l-2-2-4.3 4.3a1 1 0 0 1-1.4 0L9 14.4l-4 4V19Zm4.5-9A1.5 1.5 0 1 1 9.5 7a1.5 1.5 0 0 1 0 3Z"/></svg>
+        <span>Image</span>
+      </button>
+      <button id="circle-search" class="quick-action-button" type="button" title="Drag over a page area" aria-label="Drag over a page area">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 1 0-8 8v2A10 10 0 1 1 12 2Zm7 13v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2Z"/></svg>
+        <span>Area</span>
+      </button>
+    </section>
+
+    <section id="settings-panel" class="settings-panel" hidden>
+      <label class="check-row">
+        <input type="checkbox" id="floating-icon-toggle">
+        <span>Show floating icon on pages</span>
+      </label>
+      <div id="auth-section" class="field auth-section">
+        <h2 id="auth-title" class="settings-section-title">Authentication</h2>
+        <button id="sso-login" class="primary-button sso-button" type="button">Sign in with NanoGPT</button>
+        <p class="help-text">Sign in creates an API key for this extension and stores it locally.</p>
+        <div class="or-divider"><span>OR</span></div>
+        <label for="api-key">Add API key manually</label>
+        <div class="api-row">
+          <input id="api-key" type="password" autocomplete="off" placeholder="Enter your API key">
+          <button id="toggle-key" class="secondary-button" type="button">Show</button>
+          <button id="save-key" class="primary-button" type="button">Save</button>
+        </div>
+        <p class="help-text"><a href="https://nano-gpt.com/api" target="_blank" rel="noreferrer">Get key</a> if you prefer to paste one manually.</p>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-title">Shortcuts</div>
+          <p class="help-text">Manage keyboard shortcuts in browser extension settings.</p>
+        </div>
+        <button id="open-shortcuts" class="secondary-button" type="button">Open</button>
+      </div>
+      <div class="privacy-section">
+        <h2 class="settings-section-title">Privacy</h2>
+        <p class="help-text">NanoGPT does not store your conversations. The assistant only sends page content to NanoGPT when you attach context or submit a prompt.</p>
+        <ul class="privacy-list">
+          <li>Local chat history, settings, and any saved API key stay in this browser extension storage.</li>
+          <li>Attached pages, elements, images, and marked areas are included in the prompt you send.</li>
+          <li>Web search is only used for a prompt when the Web search toggle is on.</li>
+          <li>Webpages cannot read your extension chat history or saved API key.</li>
+        </ul>
+      </div>
+      <div class="support-section">
+        <h2 class="settings-section-title">Support</h2>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-title">Report issue</div>
+            <p class="help-text">Send feedback with optional local diagnostics. Diagnostics never include page content, prompts, images, conversations, or API keys.</p>
+          </div>
+          <button id="report-issue" class="secondary-button" type="button">Report</button>
+        </div>
+      </div>
+      <div class="danger-section">
+        <h2 class="settings-section-title">Danger zone</h2>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-title">Clear chat</div>
+            <p class="help-text">Delete the local conversation stored in this browser.</p>
+          </div>
+          <button id="clear-chat" class="danger-button" type="button">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="empty-state" class="empty-state">
+      <img src="logo.png" alt="">
+      <h2>Ask anything</h2>
+      <p>Messages stay in this browser until you clear them.</p>
+    </section>
+
+    <section id="messages" class="messages" aria-live="polite"></section>
+
+    <section class="composer-shell">
+      <div id="error-banner" class="error-banner" hidden></div>
+      <div id="draft-attachments" class="draft-attachments" hidden></div>
+      <div class="composer-modes" aria-label="Prompt modes">
+        <button id="mode-summarise" class="mode-button" type="button" aria-pressed="false">Summarise</button>
+        <button id="mode-explain" class="mode-button" type="button" aria-pressed="false">Explain</button>
+        <button id="mode-translate" class="mode-button" type="button" aria-pressed="false">Translate</button>
+        <label class="web-search-toggle">
+          <input class="web-search-input" type="checkbox" id="online-toggle">
+          <span class="web-search-dot" aria-hidden="true"></span>
+          <span>Web search</span>
+        </label>
+      </div>
+      <form id="chat-form" class="composer">
+        <div class="composer-input-shell">
+          <div class="composer-model-row">
+      <div class="model-picker">
+        <button id="model-browser-trigger" class="model-browser-trigger" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <span id="selected-model-icon" class="model-provider-icon" aria-hidden="true"></span>
+          <span id="selected-model-label">OpenAI Chat</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6 1.4-1.4Z"/></svg>
+        </button>
+              <div id="model-browser" class="model-browser" role="dialog" aria-label="Choose model" hidden>
+                <input id="model-search" class="model-search" type="search" autocomplete="off" placeholder="Search models">
+                <div id="model-categories" class="model-categories" aria-label="Model categories"></div>
+                <div id="model-results" class="model-results" role="listbox" aria-label="Models"></div>
+              </div>
+            </div>
+            <select id="model-select" class="model-select-fallback" aria-label="Model">
+              <option value="openai/gpt-chat-latest">openai/gpt-chat-latest</option>
+            </select>
+          </div>
+          <textarea id="prompt-input" rows="1" placeholder="Ask OpenAI Chat" autocomplete="off"></textarea>
+        </div>
+        <button id="send-button" type="submit" title="Send" aria-label="Send">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3 10l10 2-10 2 .4 6.4Z"/></svg>
+        </button>
+      </form>
+    </section>
+  </main>
+  <div id="confirm-modal" class="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message" hidden>
+    <div class="confirm-card">
+      <h2 id="confirm-title">Start a new chat?</h2>
+      <p id="confirm-message">This clears the current local messages.</p>
+      <div class="confirm-actions">
+        <button id="confirm-cancel" class="secondary-button" type="button">Cancel</button>
+        <button id="confirm-action" class="primary-button" type="button">Start new chat</button>
+      </div>
+    </div>
+  </div>
+  <div id="report-modal" class="confirm-modal report-modal" role="dialog" aria-modal="true" aria-labelledby="report-title" hidden>
+    <form id="report-form" class="confirm-card report-card">
+      <h2 id="report-title">Report issue</h2>
+      <label class="field">
+        <span>What happened?</span>
+        <textarea id="report-description" rows="5" required placeholder="What happened, what you expected, and steps to reproduce..."></textarea>
+      </label>
+      <label class="field">
+        <span>Contact information (optional)</span>
+        <input id="report-contact" type="text" autocomplete="email" placeholder="Email or Discord username">
+      </label>
+      <label class="check-row">
+        <input type="checkbox" id="report-include-diagnostics" checked>
+        <span>Include local diagnostics</span>
+      </label>
+      <p class="help-text">Diagnostics include extension version, browser details, local settings, message counts, and recent sanitized extension errors.</p>
+      <details class="diagnostics-preview">
+        <summary>Preview diagnostics</summary>
+        <textarea id="report-diagnostics-preview" rows="8" readonly></textarea>
+      </details>
+      <div class="confirm-actions">
+        <button id="report-cancel" class="secondary-button" type="button">Cancel</button>
+        <button id="report-submit" class="primary-button" type="submit">Send report</button>
+      </div>
+    </form>
+  </div>
+  <script src="shared/composer-utils.js"></script>
+  <script src="shared/diagnostics-utils.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* Floating Icon */
+#floating-nanogpt-icon {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9998;
+  transition: opacity 0.2s ease, top 0.16s ease, right 0.16s ease, bottom 0.16s ease, left 0.16s ease;
+  opacity: 0;
+  padding: 3px;
+  user-select: none;
+  touch-action: none;
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); */
+}
+
+#floating-nanogpt-icon.visible {
+  opacity: 1;
+}
+
+#floating-nanogpt-icon.dragging {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+#floating-nanogpt-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  #floating-nanogpt-icon {
+    background: #1a1b1e;
+  }
+}
+
+/* Menu */
+#floating-nanogpt-menu {
+  position: fixed;
+  right: 70px;
+  bottom: 20px;
+  background: white;
+  border-radius: 8px;
+  padding: 8px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9997;
+  display: none;
+}
+
+#floating-nanogpt-menu.visible {
+  display: block;
+}
+
+#floating-nanogpt-menu div {
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+#floating-nanogpt-menu div:hover {
+  background-color: #f5f5f5;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  #floating-nanogpt-menu {
+    background: #1a1b1e;
+    color: white;
+  }
+  
+  #floating-nanogpt-menu div:hover {
+    background-color: #2c2e33;
+  }
+}

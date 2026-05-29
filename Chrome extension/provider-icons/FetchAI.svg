@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xodm="http://www.corel.com/coreldraw/odm/2003" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 2500 2500" style="enable-background:new 0 0 2500 2500;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}
+	.st1{fill:#FFFFFF;}
+</style>
+<g id="Layer_x0020_1">
+	<g id="_2347739841184">
+		
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="293.1236" y1="2052.0581" x2="2209.1235" y2="446.0582" gradientTransform="matrix(1 0 0 -1 0 2500)">
+			<stop offset="0" style="stop-color:#2A63A8"></stop>
+			<stop offset="0.3804" style="stop-color:#213D5F"></stop>
+			<stop offset="1" style="stop-color:#191919"></stop>
+		</linearGradient>
+		<path class="st0" d="M1250,0L1250,0c688,0,1250,563,1250,1250l0,0c0,688-563,1250-1250,1250l0,0C562,2500,0,1937,0,1250l0,0    C0,562,563,0,1250,0z"></path>
+		<g>
+			<rect x="613" y="612" class="st1" width="180" height="180"></rect>
+			<rect x="990" y="612" class="st1" width="180" height="180"></rect>
+			<rect x="1368" y="612" class="st1" width="180" height="180"></rect>
+			<rect x="613" y="990" class="st1" width="180" height="180"></rect>
+			<rect x="990" y="990" class="st1" width="180" height="180"></rect>
+			<rect x="613" y="1368" class="st1" width="180" height="180"></rect>
+			<path class="st1" d="M1835,650c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1887,673,1863,650,1835,650z"></path>
+			<path class="st1" d="M1835,1028c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1887,1051,1863,1028,1835,1028z"></path>
+			<path class="st1" d="M1835,1405c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1887,1428,1863,1405,1835,1405z"></path>
+			<path class="st1" d="M1835,1783c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1887,1806,1863,1783,1835,1783z"></path>
+			<path class="st1" d="M1458,1028c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1510,1051,1486,1028,1458,1028z"></path>
+			<path class="st1" d="M1458,1405c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1510,1428,1486,1405,1458,1405z"></path>
+			<path class="st1" d="M1458,1783c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1510,1806,1486,1783,1458,1783z"></path>
+			<path class="st1" d="M1080,1405c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1132,1428,1108,1405,1080,1405z"></path>
+			<path class="st1" d="M1080,1783c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C1132,1806,1108,1783,1080,1783z"></path>
+			<path class="st1" d="M702,1783c-29,0-52,24-52,52c0,29,24,52,52,52c29,0,52-24,52-52C754,1806,730,1783,702,1783z"></path>
+		</g>
+	</g>
+</g>
+</svg>

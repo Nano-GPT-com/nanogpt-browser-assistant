@@ -1,0 +1,7 @@
+build
+dist
+desktop
+node_modules
+web-ext-artifacts
+Chrome extension/versions/upload-response-*.json
+Firefox extension/versions/signed

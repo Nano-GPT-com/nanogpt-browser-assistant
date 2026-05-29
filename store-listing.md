@@ -33,7 +33,7 @@ Features:
 - Sign in with NanoGPT or save a NanoGPT API key locally.
 
 Privacy and permissions:
-NanoGPT does not store your conversations. The extension needs access to webpages so it can read the page, selected elements, images, or marked areas when you ask it to. It uses storage to save local settings, local chat history, and an optional API key in your browser. The extension sends content to NanoGPT only when you submit a prompt or explicitly attach page context.
+NanoGPT does not store your conversations. The extension needs access to webpages so it can read the page, selected elements, images, or marked areas when you ask it to. It uses storage to save local settings, local chat history, and an optional API key in your browser. The extension sends content to NanoGPT only when you submit a prompt or explicitly attach page context. The browser assistant source code is public at https://github.com/Nano-GPT-com/nanogpt-browser-assistant.
 
 Suggested screenshots:
 - Side panel open on a webpage with the composer visible.
@@ -63,7 +63,7 @@ Features:
 - Sign in with NanoGPT or save a NanoGPT API key locally.
 
 Permission notes for review:
-NanoGPT does not store user conversations. The add-on requests webpage access so it can read page text, selected elements, images, or marked areas only when the user asks it to. Storage is used for local settings, local chat history, and an optional locally stored API key. Context is sent to NanoGPT only after the user submits a prompt or explicitly attaches page context.
+NanoGPT does not store user conversations. The add-on requests webpage access so it can read page text, selected elements, images, or marked areas only when the user asks it to. Storage is used for local settings, local chat history, and an optional locally stored API key. Context is sent to NanoGPT only after the user submits a prompt or explicitly attaches page context. The browser assistant source code is public at https://github.com/Nano-GPT-com/nanogpt-browser-assistant.
 
 Suggested screenshots:
 - Firefox sidebar open on a webpage.

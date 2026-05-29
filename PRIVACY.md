@@ -31,6 +31,10 @@ Diagnostics do not include your full local conversation history or full page con
 
 NanoGPT does not store your conversations. The extension stores local assistant messages in your browser so your side panel state can persist locally.
 
+## Source code
+
+The browser assistant source code is public at https://github.com/Nano-GPT-com/nanogpt-browser-assistant.
+
 ## Web search
 
 When web search is enabled for a prompt, NanoGPT may use web search providers to answer that request. The toggle is shown beside the prompt modes.
